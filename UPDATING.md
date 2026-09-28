@@ -14,6 +14,16 @@ Also search the content folder for `NOTE FOR RIKIO`. These are hidden comments (
 
 ---
 
+## The easy way: update your C.V., then ask Claude to sync
+
+Update your C.V. as usual (Overleaf, then save the PDF to Downloads or your "website materials" folder). Then open Claude Code in this folder and say **"sync the site with my new C.V."** Claude will:
+1. compare the new C.V. with the site and list every difference,
+2. update the pages, adding new papers with abstracts and links and moving papers between tabs as their status changes,
+3. replace the downloadable C.V. PDF,
+4. show you a preview, and publish only after you approve.
+
+The steps Claude follows are in `CLAUDE.md`. The sections below are for making changes yourself.
+
 ## Add a new paper
 
 1. In `content/publication/`, create a new folder. Its name becomes the permanent web address, so use short lowercase words with hyphens, e.g. `content/publication/my-new-paper/`. **Never rename a folder once the site is live.** If the title changes, edit the title inside the file instead.
