@@ -71,4 +71,4 @@ Recognized by graduate students for going "above and beyond" in fostering their 
 ## Additional Teacher Training
 
 - [Teaching Transcript](https://mcgraw.princeton.edu/graduate-students/teaching-transcript), McGraw Center for Teaching and Learning, Princeton University (2025)
-- [Staff Ride Coordinator](https://ciss.princeton.edu/student-programs/battlefield-staff-ride-program), Princeton's Center for International Security Studies (2022–)
+- [Staff Ride Coordinator](https://ciss.princeton.edu/student-programs/battlefield-staff-ride-program), Princeton's Center for International Security Studies (2022–2026)
