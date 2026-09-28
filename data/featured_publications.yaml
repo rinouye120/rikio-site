@@ -1,0 +1,9 @@
+# Items listed here are shown first under each research area on the homepage
+# (up to 5 per area). Use the folder name (slug) under content/publication/.
+featured:
+  - more-equal-than-others
+  - unraveling-americans-sympathies
+  - democratic-backsliding-security-cooperation
+  - democratic-solidarity
+  - from-allies-to-neighbors
+  - preserve-pressure-protect-peel

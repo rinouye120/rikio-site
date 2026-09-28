@@ -1,0 +1,11 @@
+{{ define "main" }}
+<div class="container content-page">
+  <header class="page-intro">
+    <h1>{{ i18n "page_not_found" }}</h1>
+    <p class="page-subtitle">{{ i18n "page_not_found_text" }}</p>
+  </header>
+  <p><button type="button" class="button primary" data-search-open>{{ i18n "nav_search" }}</button>
+     <a class="button" href="{{ "" | relURL }}">{{ i18n "home" }}</a>
+     <a class="button" href="{{ "publication/" | relURL }}">{{ i18n "btn_research" }}</a></p>
+</div>
+{{ end }}

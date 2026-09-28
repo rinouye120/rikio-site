@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{- /* People page: every co-author found in any `authors:` list, alphabetized by last name.
+       Links come from data/coauthors.json (review these — they were found by web search). */ -}}
+{{- $owner := site.Params.owner.name -}}
+{{- $co := hugo.Data.coauthors -}}
+{{- $names := slice -}}
+{{- range where site.RegularPages "Section" "in" (slice "publication" "talk" "software") }}{{ range .Params.authors }}{{ if ne . $owner }}{{ $names = $names | append . }}{{ end }}{{ end }}{{ end -}}
+{{- $rows := slice -}}
+{{- range uniq $names }}{{ $rows = $rows | append (dict "name" . "key" (printf "%s %s" (index (last 1 (split . " ")) 0) .)) }}{{ end -}}
+<div class="container content-page">
+  {{ partial "breadcrumbs.html" . }}
+  <header class="page-intro">
+    <h1>{{ .Title }}</h1>
+    {{- with .Params.subtitle }}<p class="page-subtitle">{{ . }}</p>{{ end }}
+  </header>
+  <ul class="people-list">
+    {{- range sort $rows "key" }}
+      {{- $e := index $co .name }}
+      {{- if and $e $e.url }}
+    <li><a href="{{ $e.url }}">{{ .name }}</a></li>
+      {{- else }}
+    <li>{{ .name }}{{ printf "<!-- NO VERIFIED LINK: add one in data/coauthors.json -->" | safeHTML }}</li>
+      {{- end }}
+    {{- end }}
+  </ul>
+</div>
+{{ end }}

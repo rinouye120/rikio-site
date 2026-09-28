@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{- $o := site.Params.owner -}}
+<div class="container content-page">
+  {{ partial "breadcrumbs.html" . }}
+  <header class="page-intro"><h1>{{ .Title }}</h1></header>
+  <div class="bio-layout">
+    <aside class="bio-aside">
+      <img class="portrait portrait-bio" src="{{ $o.photo | relURL }}" width="200" height="200" alt="{{ $o.photo_alt }}">
+      {{- with $o.photo_credit }}<p class="photo-credit">{{ . }}</p>{{ end }}
+      <p class="bio-role"><strong>{{ $o.name }}</strong><br>{{ $o.title }}, {{ $o.institution }}<br>{{ $o.subtitle }}</p>
+      <p><a class="button primary" href="{{ $o.cv | relURL }}">{{ i18n "btn_download_cv" }}</a></p>
+      {{- with .Params.cv_updated }}<p class="muted small">{{ i18n "cv_updated" }}: {{ . }}</p>{{ end }}
+    </aside>
+    <div class="prose bio-body">{{ .Content }}</div>
+  </div>
+</div>
+{{ end }}

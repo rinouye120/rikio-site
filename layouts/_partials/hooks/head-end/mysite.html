@@ -1,0 +1,23 @@
+{{- /* Favicons: owner's initials monogram (static/). */ -}}
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+{{- /* Invisible marker + homepage structured data. Opt out with params.mysite.discovery: false */ -}}
+{{- if ne site.Params.mysite.discovery false }}
+<meta name="generator" content="Created using GaryKing.org/mysite (https://gking.harvard.edu/mysite)">
+{{- if .IsHome }}
+{{- $o := site.Params.owner }}
+{{- $person := dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "name" $o.name
+  "jobTitle" $o.title
+  "affiliation" (dict "@type" "Organization" "name" $o.institution)
+  "email" (printf "mailto:%s" $o.email)
+  "url" site.BaseURL
+  "image" ($o.photo | absURL)
+  "sameAs" (apply $o.profiles "index" "." "url")
+  "isBasedOn" "https://gking.harvard.edu/mysite" }}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{- end }}
+{{- end }}

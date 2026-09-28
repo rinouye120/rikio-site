@@ -1,0 +1,15 @@
+{
+  "name": "rikio-site",
+  "private": true,
+  "description": "Academic website of Rikio Inouye (Hugo + Hugo Blox + Pagefind)",
+  "scripts": {
+    "build": "hugo --gc --minify && pagefind --site public",
+    "dev": "hugo server"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.12",
+    "@tailwindcss/typography": "^0.5.20",
+    "pagefind": "^1.5.0",
+    "tailwindcss": "^4.3.3"
+  }
+}

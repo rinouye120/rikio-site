@@ -1,0 +1,13 @@
+# Rikio Inouye
+
+> Rikio Inouye is a political scientist and Postdoctoral Fellow at Stanford University's Center for International Security and Cooperation (CISAC), and an incoming Assistant Professor of Political Science at Temple University (2027). Rikio's research examines how race, religion, and national identity shape public opinion about international conflict and foreign policy, including democratic solidarity, democratic backsliding, alliances, foreign aid, and support for international cooperation.
+
+## Key pages
+
+- [Bio & C.V.](https://www.rikioinouye.org/bio/): positions, education, awards, grants, talks, service
+- [Research](https://www.rikioinouye.org/publication/): peer-reviewed articles, submitted manuscripts, research in progress, replication data
+- [Teaching](https://www.rikioinouye.org/teaching/): courses, teaching approach, and teaching awards
+- [People](https://www.rikioinouye.org/authors/): co-authors
+- [Contact](https://www.rikioinouye.org/contact/): rinouye1@stanford.edu
+- [C.V. (PDF)](https://www.rikioinouye.org/files/Inouye_CV.pdf)
+- [Machine-readable list of writings (JSON)](https://www.rikioinouye.org/index.json)

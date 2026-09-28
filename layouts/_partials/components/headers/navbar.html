@@ -1,0 +1,27 @@
+{{- $home := "" | relURL -}}
+{{- $current := .RelPermalink -}}
+<header class="site-header page-header">
+  <div class="nav-shell">
+    <a class="brand" href="{{ $home }}">{{ site.Params.header.navbar.logo.text | default site.Title }}</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="sr-only">{{ i18n "nav_toggle" }}</span>
+    </button>
+    <nav id="site-nav" class="nav-links" aria-label="Primary">
+      {{- range site.Menus.main }}
+        {{- $href := "" }}
+        {{- if hasPrefix .URL "#" }}{{ $href = printf "%s%s" $home .URL }}
+        {{- else if hasPrefix .URL "http" }}{{ $href = .URL }}
+        {{- else }}{{ $href = .URL | relURL }}{{ end }}
+        {{- $active := and (not (hasPrefix .URL "#")) (hasPrefix $current $href) }}
+        <a href="{{ $href }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{- end }}
+      {{- if site.Params.header.navbar.show_search }}
+      <button class="search-btn" type="button" data-search-open aria-label="{{ i18n "nav_search" }} (Ctrl-K)" title="{{ i18n "nav_search" }} (Ctrl-K)">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <span class="search-btn-label">{{ i18n "nav_search" }}</span>
+      </button>
+      {{- end }}
+    </nav>
+  </div>
+</header>

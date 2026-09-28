@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="container content-page">
+  {{ partial "breadcrumbs.html" . }}
+  <header class="page-intro">
+    <h1>{{ .Title }}</h1>
+    {{- with .Params.subtitle }}<p class="page-subtitle">{{ . }}</p>{{ end }}
+  </header>
+  <ol class="pub-list">
+    {{- range .Pages.ByDate.Reverse }}{{ $m := partial "pub_meta.html" . }}
+    <li class="pub-item"><article class="view-citation">
+      <span class="kind-label">[{{ $m.kind }}]</span>
+      <span class="pub-cite-authors">{{ partial "pub_authors.html" (dict "authors" (.Params.authors | default slice) "link" false) }}</span>.
+      <span class="pub-cite-year">{{ $m.yearLabel }}</span>.
+      <a class="pub-cite-title" href="{{ .RelPermalink }}">{{ .Title }}</a>.
+      {{- with .Params.publication }} <span class="pub-cite-venue">{{ . | markdownify }}</span>{{ end }}
+    </article></li>
+    {{- end }}
+  </ol>
+</div>
+{{ end }}

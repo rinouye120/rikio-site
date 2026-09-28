@@ -1,0 +1,63 @@
+{{ define "main" }}
+{{- partial "redirects.html" . -}}
+{{- $o := site.Params.owner -}}
+{{- $pool := where site.RegularPages "Section" "in" (slice "publication" "talk" "software") -}}
+{{- $featured := hugo.Data.featured_publications.featured | default slice -}}
+<section class="hero home-hero">
+  <div class="container hero-grid">
+    <div class="hero-photo">
+      <img class="portrait" src="{{ $o.photo | relURL }}" width="200" height="200" alt="{{ $o.photo_alt }}" fetchpriority="high">
+      {{- with $o.photo_credit }}<p class="photo-credit">{{ . }}</p>{{ end }}
+    </div>
+    <div class="hero-copy">
+      <h1 class="hero-title">{{ $o.name }}</h1>
+      <div class="appointments">
+        <p>{{ $o.title }}, {{ $o.institution }}</p>
+        <p>{{ $o.subtitle }}</p>
+      </div>
+      <div class="prose hero-intro">{{ .Content }}</div>
+      <div class="hero-actions">
+        <a class="button primary" href="{{ "publication/" | relURL }}">{{ i18n "btn_research" }}</a>
+        <a class="button" href="{{ "bio/" | relURL }}">{{ i18n "btn_bio_cv" }}</a>
+        <a class="button" href="{{ $o.cv | relURL }}">{{ i18n "btn_download_cv" }}</a>
+      </div>
+      <p class="profile-links">
+        <a href="mailto:{{ $o.email }}">{{ $o.email }}</a><span aria-hidden="true"> · </span>
+        {{- range $i, $pr := $o.profiles }}{{ if $i }}<span aria-hidden="true"> · </span>{{ end }}<a href="{{ $pr.url }}">{{ $pr.name }}</a>{{ end -}}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section home-section" id="research-areas" aria-labelledby="research-areas-heading">
+  <div class="container split">
+    <div class="section-heading">
+      <h2 id="research-areas-heading">{{ i18n "research_areas" }}</h2>
+    </div>
+    <div class="areas">
+      {{- range hugo.Data.research_areas.areas }}
+        {{- $area := . }}
+        {{- $members := slice }}
+        {{- range $pool }}{{ $m := partial "pub_meta.html" . }}{{ if and (in $m.areas $area.slug) (ne $m.tab "data") }}{{ $members = $members | append . }}{{ end }}{{ end }}
+        {{- $first := slice }}{{ $rest := slice }}
+        {{- range $members }}{{ if in $featured .File.ContentBaseName }}{{ $first = $first | append . }}{{ else }}{{ $rest = $rest | append . }}{{ end }}{{ end }}
+        {{- $show := first 5 ($first | append $rest) }}
+      <details class="area" id="area-{{ $area.slug }}">
+        <summary>
+          <span class="area-title">{{ $area.title }}</span>
+          <span class="area-summary">{{ $area.summary }}</span>
+          <span class="area-count">{{ len $members }} {{ i18n "works" }}</span>
+        </summary>
+        <ul class="area-items">
+          {{- range $show }}{{ $m := partial "pub_meta.html" . }}
+          <li><span class="kind-label">[{{ $m.kind }}]</span> <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <span class="area-item-meta">{{ if eq $m.status "in_progress" }}{{ i18n "in_progress" }}{{ else }}{{ .Params.publication | default "" | markdownify }}{{ end }}</span></li>
+          {{- end }}
+        </ul>
+        <a class="text-link" href="{{ "publication/" | relURL }}#all?area={{ $area.slug }}">{{ i18n "view_all" }} {{ len $members }} →</a>
+      </details>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{ end }}

@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="container content-page">
+  {{ partial "breadcrumbs.html" . }}
+  <header class="page-intro"><h1>{{ .Title }}</h1></header>
+  {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  <ul class="pub-list">
+    {{- range .Pages }}<li class="pub-item"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+  </ul>
+</div>
+{{ end }}

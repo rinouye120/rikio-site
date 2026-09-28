@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{- $o := site.Params.owner -}}
+<div class="container content-page">
+  {{ partial "breadcrumbs.html" . }}
+  <header class="page-intro"><h1>{{ .Title }}</h1></header>
+  <div class="contact-grid">
+    <section class="contact-block">
+      <h2>{{ i18n "email" }}</h2>
+      <p><a href="mailto:{{ $o.email }}">{{ $o.email }}</a></p>
+    </section>
+    <section class="contact-block">
+      <h2>Affiliation</h2>
+      <p>{{ $o.title }}<br>{{ $o.institution }}</p>
+      <p>{{ $o.subtitle }}</p>
+    </section>
+    <section class="contact-block">
+      <h2>{{ i18n "profiles" }}</h2>
+      <ul class="plain-list">
+        {{- range $o.profiles }}<li><a href="{{ .url }}">{{ .name }}</a></li>{{ end }}
+      </ul>
+    </section>
+  </div>
+  {{- with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+</div>
+{{ end }}

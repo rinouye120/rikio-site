@@ -1,0 +1,28 @@
+<!doctype html>
+{{- $lang := site.Language.Locale | default "en-us" }}
+<html lang="{{ $lang }}" dir="ltr" data-wc-theme-default="light">
+  {{ partial "site_head" . }}
+  <body class="page-wrapper" id="top">
+    <a class="skip-link" href="#main">{{ i18n "skip_to_content" }}</a>
+    {{ partial "components/headers/navbar.html" . }}
+    <main id="main" class="site-main" tabindex="-1"{{ if not (or (eq .Kind "404") .Params.redirect_to) }} data-pagefind-body{{ end }}>
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "site_footer.html" . }}
+    {{ partial "components/search-modal.html" . }}
+    <script>
+      (function () {
+        var btn = document.querySelector('.nav-toggle');
+        var nav = document.getElementById('site-nav');
+        if (!btn || !nav) return;
+        btn.addEventListener('click', function () {
+          var open = nav.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        nav.addEventListener('click', function (e) {
+          if (e.target.closest('a')) { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+        });
+      })();
+    </script>
+  </body>
+</html>

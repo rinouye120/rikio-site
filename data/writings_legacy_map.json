@@ -1,0 +1,76 @@
+{
+  "entries": {
+    "from-allies-to-neighbors": {
+      "tab": "articles",
+      "legacy": "Peer Reviewed Articles"
+    },
+    "democratic-backsliding-security-cooperation": {
+      "tab": "articles",
+      "legacy": "Peer Reviewed Articles"
+    },
+    "unraveling-americans-sympathies": {
+      "tab": "articles",
+      "legacy": "Peer Reviewed Articles"
+    },
+    "preserve-pressure-protect-peel": {
+      "tab": "articles",
+      "legacy": "Peer Reviewed Articles"
+    },
+    "more-equal-than-others": {
+      "tab": "submitted",
+      "legacy": "Submitted Manuscripts"
+    },
+    "democratic-solidarity": {
+      "tab": "submitted",
+      "legacy": "Submitted Manuscripts"
+    },
+    "beyond-paternalism": {
+      "tab": "submitted",
+      "legacy": "Submitted Manuscripts"
+    },
+    "democratic-process-war-against-iran": {
+      "tab": "submitted",
+      "legacy": "Submitted Manuscripts"
+    },
+    "white-protectionism": {
+      "tab": "submitted",
+      "legacy": "Submitted Manuscripts"
+    },
+    "gender-quotas-in-autocracies": {
+      "tab": "in-progress",
+      "legacy": "Research in Progress"
+    },
+    "identity-and-the-democratic-peace": {
+      "tab": "in-progress",
+      "legacy": "Research in Progress"
+    },
+    "authoritarian-tools-democratic-audiences": {
+      "tab": "in-progress",
+      "legacy": "Research in Progress"
+    },
+    "limits-of-foreign-faces": {
+      "tab": "in-progress",
+      "legacy": "Research in Progress"
+    },
+    "evacuation-from-afghanistan": {
+      "tab": "in-progress",
+      "legacy": "Research in Progress"
+    },
+    "lost-in-translation": {
+      "tab": "in-progress",
+      "legacy": "Research in Progress"
+    },
+    "decades-in-the-making": {
+      "tab": "student",
+      "legacy": "Undergraduate Journal Publications (C.V.)"
+    },
+    "replication-unraveling-americans-sympathies": {
+      "tab": "data",
+      "legacy": "Replication packages"
+    },
+    "replication-preserve-pressure-protect-peel": {
+      "tab": "data",
+      "legacy": "Replication packages"
+    }
+  }
+}

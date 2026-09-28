@@ -1,0 +1,116 @@
+# Site configuration for Rikio Inouye's academic website.
+# baseURL must be the final public https:// address and end with a slash.
+baseURL: "https://www.rikioinouye.org/"
+title: "Rikio Inouye"
+languageCode: en-us
+enableRobotsTXT: true
+# Keywords link to the filtered Research page, so per-tag pages are not generated.
+disableKinds: [taxonomy, term]
+
+module:
+  hugoVersion:
+    min: "0.148.2"
+    extended: true
+  imports:
+    - path: github.com/HugoBlox/hugo-blox-builder/modules/blox-tailwind
+
+security:
+  exec:
+    allow: ['^(dart-)?sass$', '^go$', '^git$', '^node$', '^postcss$', '^tailwindcss$', '^npx$']
+  funcs:
+    getenv: ['^HUGO_', '^CI$']
+
+outputs:
+  home: [HTML, RSS, JSON]
+  section: [HTML, RSS]
+
+params:
+  mysite:
+    credit: true      # "Modeled after Horiuchi.org" footer line
+    discovery: true   # invisible generator meta tag + homepage schema.org Person
+  owner:
+    name: "Rikio Inouye"
+    first_name: "Rikio"
+    title: "Postdoctoral Fellow, Center for International Security and Cooperation (CISAC)"
+    subtitle: "Incoming Assistant Professor of Political Science, Temple University"
+    institution: "Stanford University"
+    email: "rinouye1@stanford.edu"
+    photo: "images/rikio-inouye.jpg"
+    photo_alt: "Portrait of Rikio Inouye"
+    photo_credit: "Photo: Se Hyun Kim"
+    cv: "files/Inouye_CV.pdf"
+    profiles:
+      - name: Google Scholar
+        url: "https://scholar.google.com/citations?user=HxoF9vUAAAAJ&hl=en"
+      - name: ORCID
+        url: "https://orcid.org/0000-0001-8512-0164"
+      - name: LinkedIn
+        url: "https://www.linkedin.com/in/rikio-inouye-46391586/"
+      - name: X
+        url: "https://x.com/RikioInouye"
+  appearance:
+    theme_day: custom
+    theme_night: custom
+    mode: light
+    color_mode: light
+    font: native
+    font_size: L
+  header:
+    navbar:
+      enable: true
+      show_search: true
+      logo:
+        text: "Rikio Inouye"
+  features:
+    search:
+      provider: pagefind
+  extensions:
+    css:
+      - css/custom.css
+  marketing:
+    analytics:
+      # Google Analytics 4 measurement ID (same tag the old Google Site used).
+      # Only added to production builds, so local previews aren't counted.
+      google_analytics: "G-JSLCH7CRDN"
+    seo:
+      description: "Rikio Inouye is a political scientist studying how race, religion, and national identity shape public opinion about international conflict and foreign policy."
+
+taxonomies:
+  tag: tags
+
+permalinks:
+  publication: /publication/:contentbasename/
+  talk: /talk/:contentbasename/
+  software: /software/:contentbasename/
+
+menu:
+  main:
+    - name: Bio & C.V.
+      url: bio/
+      weight: 10
+    - name: Research
+      url: publication/
+      weight: 20
+    - name: Research Areas
+      url: "#research-areas"
+      weight: 30
+    - name: Teaching
+      url: teaching/
+      weight: 40
+    - name: People
+      url: authors/
+      weight: 50
+    - name: Contact
+      url: contact/
+      weight: 60
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+sitemap:
+  changefreq: monthly
+
+minify:
+  minifyOutput: true

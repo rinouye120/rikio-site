@@ -1,0 +1,10 @@
+# Short links and old-website addresses.
+# Each entry creates a page at /<from>/ that forwards the visitor to <to>.
+# <to> is a path on this site (no leading slash) or a full https:// address.
+redirects:
+  - from: cv
+    to: bio/
+  - from: research
+    to: publication/
+  - from: home
+    to: ""

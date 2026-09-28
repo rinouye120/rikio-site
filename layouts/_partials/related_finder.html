@@ -1,0 +1,130 @@
+{{- /*
+  Automatic "See Also" cross-links for publication / talk / software pages.
+  Runs at build time; nothing to maintain by hand.
+
+  Priority 1   explicit front matter: related_papers, related_talks, related_software,
+               related_datasets, related_paper, related_dataset (plus the reverse links:
+               pages that list THIS page in one of those fields)
+  Priority 1b  see_also: [{url, title, kind?}] or [{section, slug}]
+  Priority 1c  dataverse_url (or a Dataverse URL inside the abstract)
+  Priority 2   siblings that share a research-area subcategory (data/research_areas.json)
+  Priority 3   scoring backfill: +2 per shared title token, +1 per shared author
+               (exact or last-name match), +2 per shared tag.
+               Threshold 4, relaxed to 2 when there are fewer than 3 explicit picks.
+  Also: "Response to / Reply to / Comment on / Rejoinder" papers pin their subject;
+        books sharing a base title (", 2nd Edition" etc.) are cross-linked.
+  Output: at most 8 rows, sorted by score then year, de-duplicated by title.
+*/ -}}
+{{- $p := . -}}
+{{- $self := $p.File.ContentBaseName -}}
+{{- $stop := slice "a" "an" "and" "the" "of" "for" "in" "on" "to" "with" "by" "at" "as" "is" "are" "be" "or" "from" "into" "using" "via" "new" "not" "no" "it" "its" "we" "our" "their" "you" "your" "this" "that" "these" "those" "but" "if" "than" "then" "so" "can" "will" "would" "could" "should" "may" "might" "also" "more" "most" "some" "all" "any" "each" "every" "who" "whom" "which" "what" "when" "where" "why" "how" "about" "between" "among" "through" "over" "under" "after" "before" "upon" "across" "per" "vs" "de" "la" "les" "et" "du" "replication" "data" -}}
+{{- $pool := where site.RegularPages "Section" "in" (slice "publication" "talk" "software") -}}
+{{- $bySlug := dict -}}
+{{- range $pool }}{{ $bySlug = merge $bySlug (dict .File.ContentBaseName .) }}{{ end -}}
+
+{{- /* helpers inline: tokens of a title */ -}}
+{{- $tok := slice -}}
+{{- range split (lower (replaceRE "[^A-Za-z0-9]+" " " $p.Title)) " " }}{{ if and (ge (len .) 3) (not (in $stop .)) }}{{ $tok = $tok | append . }}{{ end }}{{ end -}}
+{{- $tok = uniq $tok -}}
+{{- $myAuthors := $p.Params.authors | default slice -}}
+{{- $myLast := slice -}}
+{{- range $myAuthors }}{{ $myLast = $myLast | append (index (last 1 (split (lower .) " ")) 0) }}{{ end -}}
+{{- $myTags := apply ($p.Params.tags | default slice) "lower" "." -}}
+
+{{- /* Priority 1: explicit */ -}}
+{{- $explicit := slice -}}
+{{- range slice "related_papers" "related_talks" "related_software" "related_datasets" }}{{ with index $p.Params . }}{{ $explicit = $explicit | append . }}{{ end }}{{ end -}}
+{{- with $p.Params.related_paper }}{{ $explicit = $explicit | append . }}{{ end -}}
+{{- with $p.Params.related_dataset }}{{ $explicit = $explicit | append . }}{{ end -}}
+{{- range $pool }}
+  {{- $o := . }}{{ $os := .File.ContentBaseName }}
+  {{- if ne $os $self }}
+    {{- $refs := slice }}
+    {{- range slice "related_papers" "related_talks" "related_software" "related_datasets" }}{{ with index $o.Params . }}{{ $refs = $refs | append . }}{{ end }}{{ end }}
+    {{- with $o.Params.related_paper }}{{ $refs = $refs | append . }}{{ end }}
+    {{- with $o.Params.related_dataset }}{{ $refs = $refs | append . }}{{ end }}
+    {{- if in $refs $self }}{{ $explicit = $explicit | append $os }}{{ end }}
+  {{- end }}
+{{- end -}}
+{{- $explicit = uniq $explicit -}}
+
+{{- /* Response/comment papers pin their subject */ -}}
+{{- $pinned := slice -}}
+{{- if findRE "(?i)^(response to|reply to|comment on|rejoinder)" $p.Title }}
+  {{- $best := "" }}{{ $bestScore := 0 }}
+  {{- range $pool }}{{ if ne .File.ContentBaseName $self }}
+    {{- $s := 0 }}{{ $ot := split (lower (replaceRE "[^A-Za-z0-9]+" " " .Title)) " " }}
+    {{- range $tok }}{{ if in $ot . }}{{ $s = add $s 1 }}{{ end }}{{ end }}
+    {{- if gt $s $bestScore }}{{ $bestScore = $s }}{{ $best = .File.ContentBaseName }}{{ end }}
+  {{- end }}{{ end }}
+  {{- with $best }}{{ $pinned = $pinned | append . }}{{ end }}
+{{- end -}}
+
+{{- /* Research-area subcategory tags this page belongs to */ -}}
+{{- $myCats := slice -}}
+{{- range hugo.Data.research_areas.areas }}{{ range .subcategories }}{{ if in $myTags (lower .tag) }}{{ $myCats = $myCats | append (lower .tag) }}{{ end }}{{ end }}{{ end -}}
+
+{{- $baseTitle := replaceRE "(?i),?\\s*(new|revised|expanded|\\d+(st|nd|rd|th))\\s+edition$" "" $p.Title -}}
+{{- $rows := slice -}}
+{{- range $pool }}
+  {{- $o := . }}{{ $os := .File.ContentBaseName }}
+  {{- if ne $os $self }}
+    {{- $score := 0 }}
+    {{- if in $pinned $os }}{{ $score = 5000 }}{{ end }}
+    {{- if in $explicit $os }}{{ $score = add $score 1000 }}{{ end }}
+    {{- $oTypes := $o.Params.publication_types | default slice }}
+    {{- if and (in $oTypes "book") (in ($p.Params.publication_types | default slice) "book") (eq (replaceRE "(?i),?\\s*(new|revised|expanded|\\d+(st|nd|rd|th))\\s+edition$" "" $o.Title) $baseTitle) }}{{ $score = add $score 1000 }}{{ end }}
+    {{- $oTags := apply ($o.Params.tags | default slice) "lower" "." }}
+    {{- $sib := false }}{{ range $myCats }}{{ if in $oTags . }}{{ $sib = true }}{{ end }}{{ end }}
+    {{- $auto := 0 }}
+    {{- $ot := split (lower (replaceRE "[^A-Za-z0-9]+" " " $o.Title)) " " }}
+    {{- range $tok }}{{ if in $ot . }}{{ $auto = add $auto 2 }}{{ end }}{{ end }}
+    {{- range ($o.Params.authors | default slice) }}
+      {{- $l := index (last 1 (split (lower .) " ")) 0 }}
+      {{- if or (in $myAuthors .) (in $myLast $l) }}{{ $auto = add $auto 1 }}{{ end }}
+    {{- end }}
+    {{- range $oTags }}{{ if in $myTags . }}{{ $auto = add $auto 2 }}{{ end }}{{ end }}
+    {{- $score = add $score $auto }}
+    {{- if $sib }}{{ $score = add $score 100 }}{{ end }}
+    {{- $rows = $rows | append (dict "page" $o "score" $score "auto" $auto "sort" (add (mul $score 10000) (int ($o.Date.Format "2006")))) }}
+  {{- end }}
+{{- end -}}
+
+{{- $threshold := 4 -}}
+{{- if lt (len $explicit) 3 }}{{ $threshold = 2 }}{{ end -}}
+{{- $keep := slice -}}
+{{- range sort $rows "sort" "desc" }}
+  {{- if or (ge .score 100) (ge .auto $threshold) }}{{ $keep = $keep | append . }}{{ end }}
+{{- end -}}
+
+{{- /* External / manual rows */ -}}
+{{- $extra := slice -}}
+{{- range $p.Params.see_also }}
+  {{- if .url }}{{ $extra = $extra | append (dict "url" .url "title" .title "kind" (.kind | default "Link")) }}
+  {{- else if .slug }}{{ with index $bySlug .slug }}{{ $keep = (slice (dict "page" . "score" 999999 "auto" 0 "sort" 0)) | append $keep }}{{ end }}{{ end }}
+{{- end -}}
+{{- $dv := $p.Params.dataverse_url | default "" -}}
+{{- if not $dv }}{{ with findRE "https?://(dx\\.)?doi\\.org/10\\.7910/DVN/[A-Za-z0-9]+|https://dataverse\\.harvard\\.edu/[^\\s\"<)]+" ($p.Params.abstract | default "") 1 }}{{ $dv = index . 0 }}{{ end }}{{ end -}}
+{{- if and $dv (not (in ($p.Params.publication_types | default slice) "data")) }}{{ $extra = (slice (dict "url" $dv "title" (i18n "dataset_on_dataverse") "kind" (i18n "kind_dataset"))) | append $extra }}{{ end -}}
+
+{{- /* Render (dedupe by normalized title, cap 8) */ -}}
+{{- $seen := slice (lower (replaceRE "[^A-Za-z0-9]" "" $p.Title)) -}}
+{{- $out := slice -}}
+{{- range $keep }}
+  {{- $n := lower (replaceRE "[^A-Za-z0-9]" "" .page.Title) }}
+  {{- if and (not (in $seen $n)) (lt (len $out) 8) }}{{ $seen = $seen | append $n }}{{ $out = $out | append .page }}{{ end }}
+{{- end -}}
+{{- if or $out $extra }}
+<section class="gk-see-also" aria-labelledby="see-also-heading">
+  <h2 id="see-also-heading">{{ i18n "see_also" }}</h2>
+  <ul>
+    {{- range $extra }}
+    <li><span class="kind">[{{ .kind }}]</span> <a href="{{ .url }}">{{ .title }}</a></li>
+    {{- end }}
+    {{- range $out }}
+      {{- $m := partial "pub_meta.html" . }}
+    <li><span class="kind">[{{ $m.kind }}]</span> <a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="see-also-meta">{{ $m.yearLabel }}</span></li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

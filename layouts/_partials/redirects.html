@@ -1,0 +1,9 @@
+{{- /* Publishes one small forwarding page per entry in data/redirects.yaml
+       (e.g. /cv/ -> Bio & C.V.). Called once from the homepage template. */ -}}
+{{- range hugo.Data.redirects.redirects }}
+  {{- $to := .to }}
+  {{- if not (hasPrefix $to "http") }}{{ $to = $to | absURL }}{{ end }}
+  {{- $html := printf `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>%s</title><link rel="canonical" href="%s"><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=%s"></head><body><p>%s <a href="%s">%s</a>.</p></body></html>` (i18n "redirecting") $to $to (i18n "redirecting") $to $to }}
+  {{- $r := resources.FromString (printf "%s/index.html" (strings.Trim .from "/")) $html }}
+  {{- $r.Publish }}
+{{- end }}

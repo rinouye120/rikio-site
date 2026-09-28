@@ -1,0 +1,147 @@
+# All visible button and label text lives here. Edit a label once and it changes site-wide.
+- id: skip_to_content
+  translation: "Skip to content"
+- id: nav_toggle
+  translation: "Menu"
+- id: nav_search
+  translation: "Search"
+- id: home
+  translation: "Home"
+
+# Homepage
+- id: btn_bio_cv
+  translation: "Bio & C.V."
+- id: btn_download_cv
+  translation: "Download C.V. (PDF)"
+- id: btn_research
+  translation: "Research"
+- id: research_areas
+  translation: "Research Areas"
+- id: view_all
+  translation: "View all"
+- id: about
+  translation: "About"
+
+# Writings list
+- id: tab_all
+  translation: "All"
+- id: tab_articles
+  translation: "Articles"
+- id: tab_submitted
+  translation: "Submitted Manuscripts"
+- id: tab_in_progress
+  translation: "Research in Progress"
+- id: tab_data
+  translation: "Replication Data"
+- id: tab_student
+  translation: "Student Journal"
+- id: tab_presentations
+  translation: "Presentations"
+- id: tab_software
+  translation: "Software"
+- id: filter_search
+  translation: "Search"
+- id: filter_search_placeholder
+  translation: "Title, author, venue, abstract"
+- id: filter_area
+  translation: "Research area"
+- id: filter_area_all
+  translation: "All research areas"
+- id: filter_type
+  translation: "Type"
+- id: filter_year
+  translation: "Year"
+- id: filter_reset
+  translation: "Reset filters"
+- id: sort_label
+  translation: "Sort"
+- id: sort_newest
+  translation: "Newest first"
+- id: sort_oldest
+  translation: "Oldest first"
+- id: sort_title_az
+  translation: "Title A–Z"
+- id: sort_title_za
+  translation: "Title Z–A"
+- id: results_of
+  translation: "of"
+- id: results
+  translation: "results"
+- id: download_bibtex
+  translation: "Download citations (BibTeX)"
+- id: in_progress
+  translation: "In progress"
+- id: filters
+  translation: "Filters"
+
+# Publication page
+- id: abstract
+  translation: "Abstract"
+- id: authors
+  translation: "Authors"
+- id: see_also
+  translation: "See Also"
+- id: replication_data_for
+  translation: "Replication data for:"
+- id: dataset_on_dataverse
+  translation: "Replication data on Harvard Dataverse"
+- id: cite
+  translation: "Cite (BibTeX)"
+- id: copy_citation
+  translation: "Copy"
+- id: copied
+  translation: "Copied"
+- id: award
+  translation: "Award"
+- id: tags
+  translation: "Keywords"
+- id: kind_paper
+  translation: "Paper"
+- id: kind_presentation
+  translation: "Presentation"
+- id: kind_software
+  translation: "Software"
+- id: kind_dataset
+  translation: "Dataset"
+- id: kind_book
+  translation: "Book"
+- id: kind_patent
+  translation: "Patent"
+- id: kind_court_brief
+  translation: "Court Brief"
+- id: back_to
+  translation: "Back to"
+
+# Contact / people / footer
+- id: email
+  translation: "Email"
+- id: profiles
+  translation: "Profiles"
+- id: cv_updated
+  translation: "Last updated"
+- id: footer_credit_prefix
+  translation: "Created using"
+- id: search_placeholder
+  translation: "Search publications and pages"
+- id: search_no_results
+  translation: "No results found."
+- id: search_fallback
+  translation: "Search this site with Google"
+- id: search_close
+  translation: "Close search"
+- id: page_not_found
+  translation: "Page not found"
+- id: page_not_found_text
+  translation: "The page you were looking for isn't here. Try searching, or use the links above."
+- id: redirecting
+  translation: "This page has moved to"
+- id: status_published
+  translation: "Published"
+- id: status_accepted
+  translation: "Accepted / forthcoming"
+- id: status_under_review
+  translation: "Under review"
+- id: status_in_progress
+  translation: "In progress"
+- id: works
+  translation: "works"

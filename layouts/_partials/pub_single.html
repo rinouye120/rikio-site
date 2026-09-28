@@ -1,0 +1,80 @@
+{{- /* Shared body for publication, talk, and software detail pages. */ -}}
+{{- $p := . -}}
+{{- $m := partial "pub_meta.html" $p -}}
+{{- $bib := partial "pub_bibtex.html" $p -}}
+<div class="container content-page">
+  {{ partial "breadcrumbs.html" $p }}
+  <article class="pub-single">
+    <header class="pub-header">
+      <h1>{{ $p.Title }}</h1>
+      {{- with $p.Params.authors }}
+      <p class="pub-authors">{{ partial "pub_authors.html" (dict "authors" . "link" true) }}</p>
+      {{- end }}
+      <p class="pub-venue">
+        {{- if ne $m.status "in_progress" }}{{ with $p.Params.publication }}{{ . | markdownify }}{{ end }}{{ if and (ne $m.status "under_review") (not (in ($p.Params.publication | default "") $m.year)) }}{{ if $p.Params.publication }}, {{ end }}{{ $m.year }}{{ end }}
+        {{- else }}{{ i18n "in_progress" }}{{ end -}}
+        {{- if $p.Params.open_access }} <span class="badge badge-oa">Open Access</span>{{ end -}}
+      </p>
+      {{- with $p.Params.note }}<p class="pub-note">{{ . | markdownify }}</p>{{ end }}
+      {{- with $p.Params.award }}<p class="pub-award"><span class="badge badge-award">{{ i18n "award" }}</span> {{ . }}</p>{{ end }}
+    </header>
+
+    {{- with $p.Params.related_paper }}{{ with site.GetPage (printf "/publication/%s" .) }}
+    <p class="dataset-banner"><span class="badge badge-data">{{ i18n "kind_dataset" }}</span> {{ i18n "replication_data_for" }} <a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+    {{- end }}{{ end }}
+
+    <div class="pub-links">
+      {{- range $p.Params.links }}
+        {{- $u := .url }}{{ if not (or (hasPrefix $u "http") (hasPrefix $u "mailto:")) }}{{ $u = $u | relURL }}{{ end }}
+      <a class="button" href="{{ $u }}">{{ .name }}</a>
+      {{- end }}
+      {{- with $p.Params.dataverse_url }}
+      <a class="button" href="{{ . }}">{{ i18n "dataset_on_dataverse" }}</a>
+      {{- end }}
+      <details class="cite-box">
+        <summary class="button button-cite">{{ i18n "cite" }}</summary>
+        <div class="cite-body">
+          <pre id="bibtex"><code>{{ $bib }}</code></pre>
+          <button type="button" class="button button-cite" data-copy="#bibtex" data-copied="{{ i18n "copied" }}">{{ i18n "copy_citation" }}</button>
+        </div>
+      </details>
+    </div>
+
+    {{- $img := ($p.Resources.ByType "image").GetMatch "*featured*" }}
+    {{- with $img }}
+      {{- $r := .Fit "480x640" }}
+    <figure class="pub-featured">
+      <img src="{{ $r.RelPermalink }}" width="{{ $r.Width }}" height="{{ $r.Height }}" alt="{{ $p.Title }}">
+      {{- with $p.Params.image_credit }}<figcaption>{{ . }}</figcaption>{{ end }}
+    </figure>
+    {{- end }}
+
+    {{- with $p.Params.abstract }}
+    <section id="abstract" class="pub-abstract">
+      <h2>{{ i18n "abstract" }}</h2>
+      <p>{{ . | markdownify }}</p>
+    </section>
+    {{- end }}
+
+    {{- with $p.Content }}<div class="prose">{{ . }}</div>{{ end }}
+
+    {{- with $p.Params.tags }}
+    <p class="pub-tags"><span class="label">{{ i18n "tags" }}:</span>
+      {{- range $i, $t := . }}{{ if $i }},{{ end }} <a href="{{ "publication/" | relURL }}#all?q={{ $t | urlquery }}">{{ $t }}</a>{{ end }}
+    </p>
+    {{- end }}
+
+    {{ partial "related_finder.html" $p }}
+  </article>
+</div>
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var el = document.querySelector(b.dataset.copy);
+      if (!el || !navigator.clipboard) return;
+      navigator.clipboard.writeText(el.innerText).then(function () {
+        var t = b.textContent; b.textContent = b.dataset.copied; setTimeout(function () { b.textContent = t; }, 1500);
+      });
+    });
+  });
+</script>

@@ -1,0 +1,34 @@
+{{- /* Returns a dict of derived fields for a writings page: tab, kind label, year label, areas. */ -}}
+{{- $p := . -}}
+{{- $slug := $p.File.ContentBaseName -}}
+{{- $types := $p.Params.publication_types | default slice -}}
+{{- $status := $p.Params.status | default "published" -}}
+{{- $tab := "" -}}
+{{- with index (hugo.Data.writings_legacy_map.entries | default dict) $slug }}{{ $tab = .tab }}{{ end -}}
+{{- if not $tab -}}
+  {{- if eq $p.Section "talk" }}{{ $tab = "presentations" }}
+  {{- else if eq $p.Section "software" }}{{ $tab = "software" }}
+  {{- else if in $types "data" }}{{ $tab = "data" }}
+  {{- else if eq $status "in_progress" }}{{ $tab = "in-progress" }}
+  {{- else if eq $status "under_review" }}{{ $tab = "submitted" }}
+  {{- else }}{{ $tab = "articles" }}{{ end -}}
+{{- end -}}
+{{- $kind := "kind_paper" -}}
+{{- if in $types "data" }}{{ $kind = "kind_dataset" }}
+{{- else if or (in $types "book") (in $types "book_chapter") (in $types "chapter") }}{{ $kind = "kind_book" }}
+{{- else if in $types "software" }}{{ $kind = "kind_software" }}
+{{- else if in $types "patent" }}{{ $kind = "kind_patent" }}
+{{- else if in $types "court_brief" }}{{ $kind = "kind_court_brief" }}
+{{- else if or (in $types "presentation") (eq $p.Section "talk") }}{{ $kind = "kind_presentation" }}
+{{- else if eq $p.Section "software" }}{{ $kind = "kind_software" }}{{ end -}}
+{{- $year := $p.Date.Format "2006" -}}
+{{- $yearLabel := $year -}}
+{{- if eq $status "in_progress" }}{{ $yearLabel = i18n "in_progress" }}{{ end -}}
+{{- $tags := $p.Params.tags | default slice -}}
+{{- $areas := slice -}}
+{{- range hugo.Data.research_areas.areas }}
+  {{- $a := . }}{{ $hit := false }}
+  {{- range .subcategories }}{{ if in $tags .tag }}{{ $hit = true }}{{ end }}{{ end }}
+  {{- if $hit }}{{ $areas = $areas | append $a.slug }}{{ end }}
+{{- end -}}
+{{- return (dict "slug" $slug "tab" $tab "kind" (i18n $kind) "year" $year "yearLabel" $yearLabel "status" $status "areas" $areas) -}}

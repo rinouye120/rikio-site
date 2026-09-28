@@ -1,0 +1,5 @@
+{{- $items := slice -}}
+{{- range where site.RegularPages "Section" "in" (slice "publication" "talk" "software") -}}
+  {{- $items = $items | append (dict "title" .Title "url" .Permalink "date" (.Date.Format "2006-01-02") "authors" (.Params.authors | default slice) "publication" (.Params.publication | default "" | markdownify | plainify | htmlUnescape) "status" (.Params.status | default "") "abstract" (.Params.abstract | default "")) -}}
+{{- end -}}
+{{- dict "name" site.Params.owner.name "url" site.BaseURL "writings" $items | jsonify (dict "indent" "  ") -}}

@@ -1,0 +1,33 @@
+{
+  "areas": [
+    {
+      "slug": "race-religion",
+      "title": "Race and Religion in International Relations",
+      "summary": "How racial and religious identities affect support for countries in conflict.",
+      "subcategories": [
+        { "name": "Race", "tag": "race" },
+        { "name": "Religion", "tag": "religion" }
+      ]
+    },
+    {
+      "slug": "democracy",
+      "title": "Democratic Solidarity and Democratic Backsliding",
+      "summary": "How democracy, democratic backsliding, and alliance identities shape foreign policy preferences.",
+      "subcategories": [
+        { "name": "Democratic solidarity", "tag": "democratic solidarity" },
+        { "name": "Democratic backsliding", "tag": "democratic backsliding" }
+      ]
+    },
+    {
+      "slug": "security-cooperation",
+      "title": "Public Opinion about International Security and Cooperation",
+      "summary": "How people evaluate countries and international actors, and public support for international cooperation.",
+      "subcategories": [
+        { "name": "Security cooperation and alliances", "tag": "alliances" },
+        { "name": "Foreign aid", "tag": "foreign aid" },
+        { "name": "Migration and refugees", "tag": "migration" },
+        { "name": "Great-power rivalry", "tag": "great-power rivalry" }
+      ]
+    }
+  ]
+}

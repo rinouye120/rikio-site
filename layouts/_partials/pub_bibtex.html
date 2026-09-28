@@ -1,0 +1,28 @@
+{{- /* Returns a BibTeX entry (string) for a publication page. */ -}}
+{{- $p := . -}}
+{{- $types := $p.Params.publication_types | default slice -}}
+{{- $status := $p.Params.status | default "published" -}}
+{{- $kind := "unpublished" -}}
+{{- if and (in $types "journal_article") (in (slice "published" "accepted") $status) }}{{ $kind = "article" }}
+{{- else if in $types "book" }}{{ $kind = "book" }}
+{{- else if in $types "data" }}{{ $kind = "misc" }}{{ end -}}
+{{- $authors := $p.Params.authors | default slice -}}
+{{- $first := index $authors 0 | default "anon" -}}
+{{- $last := index (last 1 (split $first " ")) 0 | lower | replaceRE "[^a-z]" "" -}}
+{{- $words := split (lower (replaceRE "[^A-Za-z0-9 ]" "" $p.Title)) " " -}}
+{{- $stop := slice "a" "an" "the" "of" "for" "in" "on" "to" "and" "does" "how" "from" "replication" "data" -}}
+{{- $kw := "" -}}
+{{- range $words }}{{ if and (not $kw) (not (in $stop .)) (ge (len .) 3) }}{{ $kw = . }}{{ end }}{{ end -}}
+{{- $key := printf "%s%s%s" $last ($p.Date.Format "2006") $kw -}}
+{{- $s := printf "@%s{%s,\n  title = {%s},\n  author = {%s},\n  year = {%s}" $kind $key $p.Title (delimit $authors " and ") ($p.Date.Format "2006") -}}
+{{- if eq $kind "article" }}{{ with $p.Params.venue }}{{ $s = printf "%s,\n  journal = {%s}" $s . }}{{ end }}{{ end -}}
+{{- with $p.Params.volume }}{{ $s = printf "%s,\n  volume = {%s}" $s . }}{{ end -}}
+{{- with $p.Params.issue }}{{ $s = printf "%s,\n  number = {%s}" $s . }}{{ end -}}
+{{- with $p.Params.pages }}{{ $s = printf "%s,\n  pages = {%s}" $s . }}{{ end -}}
+{{- with $p.Params.doi }}{{ $s = printf "%s,\n  doi = {%s}" $s . }}{{ end -}}
+{{- if eq $kind "misc" }}{{ $s = printf "%s,\n  howpublished = {%s}" $s ($p.Params.publication | default "" | plainify) }}{{ with $p.Params.dataverse_url }}{{ $s = printf "%s,\n  url = {%s}" $s . }}{{ end }}{{ end -}}
+{{- if eq $kind "unpublished" }}{{ $s = printf "%s,\n  note = {%s}" $s ($p.Params.publication | default "Working paper" | markdownify | plainify | htmlUnescape) }}{{ end -}}
+{{- if ne $kind "misc" }}{{ $s = printf "%s,\n  url = {%s}" $s $p.Permalink }}{{ end -}}
+{{- if and (eq $kind "article") (eq $status "accepted") }}{{ $s = printf "%s,\n  note = {Forthcoming}" $s }}{{ end -}}
+{{- $s = printf "%s\n}" $s -}}
+{{- return $s -}}

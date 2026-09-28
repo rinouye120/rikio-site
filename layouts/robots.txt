@@ -1,0 +1,6 @@
+# All crawlers, including AI assistants, are welcome.
+User-agent: *
+Allow: /
+
+# A short plain-text guide to this site for AI agents: {{ "llms.txt" | absURL }}
+Sitemap: {{ "sitemap.xml" | absURL }}

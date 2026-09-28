@@ -1,0 +1,14 @@
+{{- /* Renders an author list. Owner's name is emphasized; co-authors link to their page
+       from data/coauthors.json when one is known. Input: dict "authors" slice "link" bool */ -}}
+{{- $owner := site.Params.owner.name -}}
+{{- $co := hugo.Data.coauthors -}}
+{{- $n := len .authors -}}
+{{- $link := .link -}}
+{{- range $i, $a := .authors -}}
+  {{- if and (gt $i 0) (eq (add $i 1) $n) }}{{ if gt $n 2 }},{{ end }} and {{ else if gt $i 0 }}, {{ end -}}
+  {{- if eq $a $owner -}}<span class="owner">{{ $a }}</span>
+  {{- else -}}
+    {{- $entry := index $co $a -}}
+    {{- if and $link $entry $entry.url -}}<a href="{{ $entry.url }}">{{ $a }}</a>{{- else -}}{{ $a }}{{- end -}}
+  {{- end -}}
+{{- end -}}
