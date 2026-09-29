@@ -18,7 +18,7 @@ We use Blox for the `<head>` (`site_head`: Tailwind pipeline, SEO/OG tags, JSON-
 | `layouts/_partials/components/headers/navbar.html` | Brand (owner's name, links home) left; nav right; search icon; hamburger ≤ 900px. Carries class `page-header` because Blox's `hb-nav.js` measures it |
 | `layouts/_partials/components/search-modal.html` | Vanilla-JS Pagefind modal: lazy-loads `{{ "pagefind/pagefind.js" \| relURL }}`, Cmd/Ctrl-K, Esc, arrow keys, Google `site:` fallback |
 | `layouts/_partials/libraries.html` | Emptied: Blox's Alpine.js and search bundle aren't needed |
-| `layouts/_partials/site_footer.html` | Dark footer; "Created using GaryKing.org/mysite" credit gated by `params.mysite.credit` |
+| `layouts/_partials/site_footer.html` | Footer styled after horiuchi.org (RI monogram, name/title, page links, C.V. link on a light wash). Bottom row: copyright + "Modelled after horiuchi.org"; the "Created using GaryKing.org/mysite" credit replaces it if `params.mysite.credit` is true (owner turned it off) |
 | `layouts/_partials/hooks/head-end/mysite.html` | Favicons, generator meta + homepage `Person` JSON-LD (gated by `params.mysite.discovery`) |
 | `layouts/_partials/hooks/head-end/scholarly-meta.html` | Google Scholar `citation_*` tags + ScholarlyArticle/Dataset JSON-LD on writings |
 | `layouts/landing/list.html` | Homepage: photo left / text right hero; research-area accordions (`id="research-areas"`, `scroll-margin-top`); also publishes redirects |

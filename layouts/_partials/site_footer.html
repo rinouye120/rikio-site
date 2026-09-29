@@ -1,11 +1,17 @@
+{{- /* Footer in the style of horiuchi.org (light wash, hairline, monogram mark):
+       identity + title on the left, page links + C.V. on the right,
+       copyright and design credit on the bottom row.
+       The GaryKing.org/mysite credit is gated by params.mysite.credit (currently off). */ -}}
 {{- $o := site.Params.owner -}}
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-identity">
-      <p class="footer-name">{{ $o.name }}</p>
-      <p>{{ $o.title }}, {{ $o.institution }}</p>
-      <p>{{ $o.subtitle }}</p>
-      <p>{{ i18n "email" }}: <a href="mailto:{{ $o.email }}">{{ $o.email }}</a></p>
+      <img class="footer-mark" src="{{ "apple-touch-icon.png" | relURL }}" alt="" width="34" height="34" loading="lazy">
+      <div>
+        <p class="footer-name">{{ $o.name }}</p>
+        <p>{{ $o.title }}, {{ $o.institution }}</p>
+        <p>{{ $o.subtitle }}</p>
+      </div>
     </div>
     <nav class="footer-nav" aria-label="Footer">
       <a href="{{ "" | relURL }}">{{ i18n "home" }}</a>
@@ -15,10 +21,14 @@
       <a href="{{ $o.cv | relURL }}">{{ i18n "btn_download_cv" }}</a>
     </nav>
   </div>
-  <div class="container footer-bottom">
+  <div class="container">
+   <div class="footer-bottom">
     <p>© {{ now.Year }} {{ $o.name }}</p>
     {{- if ne site.Params.mysite.credit false }}
     <p class="footer-credit">{{ i18n "footer_credit_prefix" }} <a href="https://garyking.org/mysite">GaryKing.org/mysite</a></p>
+    {{- else }}
+    <p class="footer-credit">{{ i18n "footer_design_credit_prefix" }} <a href="https://horiuchi.org/">horiuchi.org</a></p>
     {{- end }}
+   </div>
   </div>
 </footer>

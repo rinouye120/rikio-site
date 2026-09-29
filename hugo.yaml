@@ -26,7 +26,7 @@ outputs:
 
 params:
   mysite:
-    credit: true      # "Modeled after Horiuchi.org" footer line
+    credit: false     # false = footer says "Modelled after horiuchi.org"; true = "Created using GaryKing.org/mysite"
     discovery: true   # invisible generator meta tag + homepage schema.org Person
   owner:
     name: "Rikio Inouye"

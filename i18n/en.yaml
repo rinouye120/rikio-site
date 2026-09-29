@@ -145,3 +145,5 @@
   translation: "In progress"
 - id: works
   translation: "works"
+- id: footer_design_credit_prefix
+  translation: "Modelled after"
