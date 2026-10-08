@@ -23,6 +23,7 @@
 {{- if eq $kind "misc" }}{{ $s = printf "%s,\n  howpublished = {%s}" $s ($p.Params.publication | default "" | plainify) }}{{ with $p.Params.dataverse_url }}{{ $s = printf "%s,\n  url = {%s}" $s . }}{{ end }}{{ end -}}
 {{- if eq $kind "unpublished" }}{{ $s = printf "%s,\n  note = {%s}" $s ($p.Params.publication | default "Working paper" | markdownify | plainify | htmlUnescape) }}{{ end -}}
 {{- if ne $kind "misc" }}{{ $s = printf "%s,\n  url = {%s}" $s $p.Permalink }}{{ end -}}
-{{- if and (eq $kind "article") (eq $status "accepted") }}{{ $s = printf "%s,\n  note = {Forthcoming}" $s }}{{ end -}}
+{{- $conditional := in (lower ($p.Params.publication | default "")) "conditionally accepted" -}}
+{{- if and (eq $kind "article") (eq $status "accepted") }}{{ if $conditional }}{{ $s = printf "%s,\n  note = {%s}" $s ($p.Params.publication | markdownify | plainify | htmlUnescape) }}{{ else }}{{ $s = printf "%s,\n  note = {Forthcoming}" $s }}{{ end }}{{ end -}}
 {{- $s = printf "%s\n}" $s -}}
 {{- return $s -}}

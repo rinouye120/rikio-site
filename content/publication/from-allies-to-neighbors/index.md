@@ -5,8 +5,9 @@ weight: 1
 authors: ["Rikio Inouye", "Christopher Blair"]
 publication_types: ["journal_article"]
 status: accepted
-publication: "Accepted at the *American Journal of Political Science*"
+publication: "Conditionally accepted at the *American Journal of Political Science*"
 venue: "American Journal of Political Science"
+award: "Young Investigator's Competition for CivicPulse Omnibus Surveys of Local and State Government (2024)"
 abstract: "Many of the largest refugee crises occur in the wake of military withdrawals. How does a refugee's experience working alongside host military forces abroad shape support for resettlement? We argue that natives are more supportive of migrants with prior experience serving alongside host country troops. Favorability toward allied refugees is motivated by retrospective reciprocity, a bundle of considerations related to moral obligation, shared values, and commitments to strategic partners. We test this theory using six survey experiments on mass and elite samples, focusing on perceptions of migrants from Afghanistan, Iraq, and Vietnam. We find overwhelming evidence that prior experience working with host-nation forces increases support for resettling allied migrants. The effects of prior service are motivated by beliefs that these migrants are owed support and share defining civic values. Qualitative insights from interviews bolster our argument. Cooperation abroad can reduce anti-migrant prejudice at home, transforming allies into neighbors."
 links:
   - name: "Preprint (SSRN)"

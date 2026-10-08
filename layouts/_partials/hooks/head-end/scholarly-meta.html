@@ -9,7 +9,7 @@
 <meta name="citation_author" content="{{ . }}">
 {{- end }}
 <meta name="citation_publication_date" content="{{ .Date.Format "2006/01/02" }}">
-{{- if and .Params.venue (in (slice "published" "accepted") .Params.status) }}
+{{- if and .Params.venue (in (slice "published" "accepted") .Params.status) (not (in (lower (.Params.publication | default "")) "conditionally accepted")) }}
 <meta name="citation_journal_title" content="{{ .Params.venue }}">
 {{- end }}
 {{- with .Params.volume }}<meta name="citation_volume" content="{{ . }}">{{ end }}

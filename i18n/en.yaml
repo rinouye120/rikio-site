@@ -138,7 +138,7 @@
 - id: status_published
   translation: "Published"
 - id: status_accepted
-  translation: "Accepted / forthcoming"
+  translation: "Accepted / conditionally accepted"
 - id: status_under_review
   translation: "Under review"
 - id: status_in_progress
