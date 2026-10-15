@@ -1,5 +1,5 @@
 ---
-title: "Democratic Process in the War Against Iran: Allied Public Opinion and US Security Cooperation"
+title: "Democratic Backsliding and Allied Public Support in the US–Iran War"
 date: 2026-05-01
 weight: 8
 authors: ["Rikio Inouye", "Yusaku Horiuchi", "Eun A Jo", "Kelly Matush"]
@@ -13,4 +13,3 @@ links:
 tags: ["democratic backsliding", "alliances", "security cooperation", "use of force", "support for war", "Iran", "survey experiment"]
 ---
 
-<!-- NOTE FOR RIKIO: Title follows the Sept 2026 C.V. The old website listed it as 'Democratic Backsliding and Allied Public Support in the US-Iran War'. Please confirm the current title. -->

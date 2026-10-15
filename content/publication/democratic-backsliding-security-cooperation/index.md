@@ -1,5 +1,5 @@
 ---
-title: "Democratic Backsliding Damages International Security Cooperation with Critical Allies"
+title: "Democratic Backsliding Damages Foreign Public Support for Security Cooperation"
 date: 2026-01-01
 weight: 2
 authors: ["Rikio Inouye", "Yusaku Horiuchi", "Eun A Jo", "Kelly Matush"]
@@ -14,4 +14,3 @@ links:
 tags: ["democratic backsliding", "security cooperation", "alliances", "intelligence sharing", "Five Eyes", "survey experiment", "public opinion"]
 ---
 
-<!-- NOTE FOR RIKIO: Title follows the Sept 2026 C.V. The old website listed this paper as 'Democratic Backsliding Damages Foreign Public Support for Security Cooperation'. Please confirm the current title. -->
