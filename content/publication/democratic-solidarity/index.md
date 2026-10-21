@@ -1,5 +1,5 @@
 ---
-title: "Democratic Solidarity: Does the Democratic Public Support Fellow Democracies in Conflicts?"
+title: "Democratic Solidarity: Selective Support for Democracies in War"
 date: 2025-06-01
 weight: 6
 authors: ["Rikio Inouye", "Yusaku Horiuchi"]
