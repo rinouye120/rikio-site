@@ -54,9 +54,9 @@ I graduated summa cum laude with highest honors in political science from UC Ber
 
 <div class="cv-list">
 
-- **2026:** Center for International Security Studies Dissertation Grant; LBJ School Policy Research Institute (with Sheena Chestnut Greitens and Kelly Matush); Institute for Humane Studies (with Yusaku Horiuchi, Eun A Jo, and Kelly Matush); Africa World Initiative Grant (with Gavin Medina-Hall and Maria Nagawa); Center for the Study of Democratic Politics (CSDP) Seed Grant
-- **2025:** APSA Lee Ann Fujii Travel Grant; Data Driven Social Sciences Grant (with Gavin Medina-Hall and Maria Nagawa); JAA – Honjo Scholarship; Mamdouha S. Bobst Center for Peace and Justice
-- **2024:** Data Driven Social Sciences Small-Scale Grant (with Gavin Medina-Hall and Burcu Kolcak); Institute for Humane Studies (with Yusaku Horiuchi); Center for International Security Studies Dissertation Grant; Data Driven Social Sciences Small-Scale Grant (with Simone Dietrich and Soohyun Cho); Niehaus Center for Global Governance Research Grant; Princeton Survey Research Center Funder Research Grant; Princeton Research in Experimental Social Science (PRESS)
+- **2026:** Center for International Security Studies Dissertation Grant; LBJ School Policy Research Institute (with Sheena Chestnut Greitens and Kelly Matush); Institute for Humane Studies (with Yusaku Horiuchi, Eun A Jo, and Kelly Matush); Africa World Initiative Grant (with Gavin Medina and Maria Nagawa); Center for the Study of Democratic Politics (CSDP) Seed Grant
+- **2025:** APSA Lee Ann Fujii Travel Grant; Data Driven Social Sciences Grant (with Gavin Medina and Maria Nagawa); JAA – Honjo Scholarship; Mamdouha S. Bobst Center for Peace and Justice
+- **2024:** Data Driven Social Sciences Small-Scale Grant (with Gavin Medina and Burcu Kolcak); Institute for Humane Studies (with Yusaku Horiuchi); Center for International Security Studies Dissertation Grant; Data Driven Social Sciences Small-Scale Grant (with Simone Dietrich and Soohyun Cho); Niehaus Center for Global Governance Research Grant; Princeton Survey Research Center Funder Research Grant; Princeton Research in Experimental Social Science (PRESS)
 - **2023:** APSA Lee Ann Fujii Travel Grant; Center for International Security Studies Dissertation Grant; Mamdouha S. Bobst Center for Peace and Justice; PRESS; CSDP Seed Grant
 
 </div>
