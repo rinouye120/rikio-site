@@ -161,6 +161,10 @@ a:hover { color: var(--color-link-hover); }
 .portrait { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; display: block; border: 1px solid var(--color-border); box-shadow: var(--shadow); background: var(--color-surface); }
 .photo-credit { font-size: .78rem; color: var(--color-text-muted); text-align: center; margin: .55rem 0 0; }
 .hero-title { font-size: clamp(2.4rem, 5vw, 3.6rem); margin: 0 0 .5rem; letter-spacing: -.01em; }
+.name-pronunciation { margin: -.2rem 0 .9rem; font-size: .95rem; color: var(--color-text-muted); }
+.name-pronunciation .pron-respell { font-style: italic; }
+.name-pronunciation .name-ja { white-space: nowrap; }
+.name-pronunciation .pron-ipa { margin-left: .35rem; white-space: nowrap; }
 .appointments { margin-bottom: 1.1rem; padding-left: .85rem; border-left: 3px solid var(--color-institution); }
 .appointments p { margin: 0; font-size: 1.08rem; color: var(--color-text-muted); font-weight: 600; }
 .hero-intro { font-size: 1.07rem; max-width: 72ch; }

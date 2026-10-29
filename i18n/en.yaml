@@ -15,6 +15,10 @@
   translation: "Download C.V. (PDF)"
 - id: btn_research
   translation: "Research"
+- id: pronounced
+  translation: "Pronounced"
+- id: pronounced_ipa
+  translation: "International Phonetic Alphabet"
 - id: research_areas
   translation: "Research Areas"
 - id: view_all

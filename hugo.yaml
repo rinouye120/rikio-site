@@ -31,6 +31,10 @@ params:
   owner:
     name: "Rikio Inouye"
     first_name: "Rikio"
+    # Japanese reading (no stressed syllable; give each syllable equal weight). r = light tap, as in "ladder".
+    pronunciation: "ree-kee-oh ee-noh-oo-eh"
+    pronunciation_ipa: "[ɾi.ki.o i.no.ɯ.e]"
+    name_ja: "リキオ・イノウエ"
     title: "Postdoctoral Fellow, Center for International Security and Cooperation (CISAC)"
     subtitle: "Incoming Assistant Professor of Political Science, Temple University"
     institution: "Stanford University"

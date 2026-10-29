@@ -11,6 +11,9 @@
     </div>
     <div class="hero-copy">
       <h1 class="hero-title">{{ $o.name }}</h1>
+      {{- with $o.pronunciation }}
+      <p class="name-pronunciation">{{ with $o.name_ja }}<span class="name-ja" lang="ja">{{ . }}</span><span aria-hidden="true"> · </span>{{ end }}{{ i18n "pronounced" }} <span class="pron-respell">{{ . }}</span>{{ with $o.pronunciation_ipa }} <span class="pron-ipa" title="{{ i18n "pronounced_ipa" }}">{{ . }}</span>{{ end }}</p>
+      {{- end }}
       <div class="appointments">
         <p>{{ $o.title }}, {{ $o.institution }}</p>
         <p>{{ $o.subtitle }}</p>
