@@ -28,6 +28,15 @@
         { "name": "Migration and refugees", "tag": "migration" },
         { "name": "Great-power rivalry", "tag": "great-power rivalry" }
       ]
+    },
+    {
+      "slug": "gender-aid",
+      "title": "Gender, Representation, and Foreign Aid",
+      "summary": "How gender reforms and the diversity of aid leadership shape public evaluations of foreign aid and of the governments that receive it.",
+      "subcategories": [
+        { "name": "Gender reform and women's representation", "tag": "gender" },
+        { "name": "Descriptive representation", "tag": "descriptive representation" }
+      ]
     }
   ]
 }

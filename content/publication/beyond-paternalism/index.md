@@ -10,7 +10,7 @@ abstract: "This paper examines how the racial and gender composition of donor le
 links:
   - name: "Preprint (APSA Preprints)"
     url: "https://doi.org/10.33774/apsa-2025-l5m9m-v4"
-tags: ["race", "foreign aid", "gender", "diversity", "South Africa", "survey experiment"]
+tags: ["race", "foreign aid", "gender", "diversity", "South Africa", "survey experiment", "descriptive representation"]
 ---
 
 <!-- NOTE FOR RIKIO: Author order follows the APSA Preprints record (Cho, Dietrich, Inouye). The old website listed Rikio Inouye first. Please confirm. -->
