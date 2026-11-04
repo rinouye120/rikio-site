@@ -3,7 +3,7 @@
     {
       "slug": "race-religion",
       "title": "Race and Religion in International Relations",
-      "summary": "How racial and religious identities affect support for countries in conflict.",
+      "summary": "How racial and religious identities affect support to other countries and the evaluations of those countries.",
       "subcategories": [
         { "name": "Race", "tag": "race" },
         { "name": "Religion", "tag": "religion" }
