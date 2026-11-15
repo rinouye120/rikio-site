@@ -1,0 +1,125 @@
+{{- /*
+  Google Analytics 4 — overrides Hugo Blox's partial of the same name.
+  Production builds only (`hugo --environment preview` and `hugo server` send nothing).
+  Hugo Blox's legacy outbound handler is dropped: it only caught clicks landing exactly on <a>
+  and used Universal Analytics fields. Events sent here (all with link_location = navbar / footer / page):
+    cv_download            the C.V. PDF                              (mark as key event in GA)
+    paper_download         any other PDF under /files/               (key event) — paper_title
+    publication_link_click buttons on a paper page (journal, SSRN, Dataverse…) — link_type, paper_title
+    profile_click          Google Scholar / ORCID / LinkedIn / X     — profile
+    email_click            mailto: links
+    (other outbound links and file_download are left to GA4 Enhanced measurement, so they aren't double-counted)
+    citation_copy          "Copy citation" on a paper page           — paper_title
+    bibtex_download        "Download BibTeX" on the Research page    — result_count
+    search                 site search (pagefind modal), debounced   — search_term
+  Every page view also carries content_group (home / research / paper / bio / teaching / …).
+  This file is loaded with partialCached, so nothing here may depend on the current page.
+*/ -}}
+{{- $ga := site.Params.marketing.analytics.google_analytics | default "" }}
+{{- if hugo.IsProduction | and $ga }}
+{{- $gtag_config := cond (site.Params.features.privacy_pack.enable | default false) "true" "false" }}
+{{- $cv := site.Params.owner.cv | default "" }}
+{{- $profiles := slice }}{{ range site.Params.owner.profiles }}{{ $profiles = $profiles | append (dict "name" .name "url" .url) }}{{ end }}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga }}"></script>
+<script>
+(function () {
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+
+  var base = {{ site.BaseURL | relURL }};
+  var path = location.pathname.indexOf(base) === 0 ? location.pathname.slice(base.length) : location.pathname.replace(/^\//, '');
+  var seg = path.split('/').filter(Boolean);
+  var group = !seg.length ? 'home'
+    : seg[0] === 'publication' ? (seg.length > 1 ? 'paper' : 'research')
+    : seg[0];
+
+  gtag('js', new Date());
+  var cfg = { content_group: group };
+  if ({{ $gtag_config | safeJS }}) cfg.anonymize_ip = true;
+  gtag('config', {{ $ga }}, cfg);
+  gtag('set', { cookie_flags: 'SameSite=None;Secure' });
+
+  var cvFile = {{ $cv }}.split('/').pop();
+  var profiles = {{ $profiles }};
+
+  function send(name, params) {
+    params = params || {};
+    params.transport_type = 'beacon';
+    gtag('event', name, params);
+  }
+  function where(el) {
+    if (el.closest('footer')) return 'footer';
+    if (el.closest('nav, header')) return 'navbar';
+    return 'page';
+  }
+  function paperTitle() {
+    if (group !== 'paper') return undefined;
+    var h = document.querySelector('main h1');
+    return h ? h.textContent.trim().slice(0, 100) : document.title;
+  }
+  function text(el) { return (el.textContent || el.getAttribute('aria-label') || '').trim().slice(0, 100); }
+
+  document.addEventListener('click', function (ev) {
+    var t = ev.target;
+    if (!(t instanceof Element)) return;
+
+    var btn = t.closest('button, summary');
+    if (btn) {
+      if (btn.matches('[data-copy]')) send('citation_copy', { paper_title: paperTitle() });
+      else if (btn.id === 'pub-bibtex') send('bibtex_download', {
+        result_count: document.querySelectorAll('[data-slug]:not([hidden])').length
+      });
+      return;
+    }
+
+    var a = t.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    var loc = where(a);
+
+    if (/^mailto:/i.test(href)) { send('email_click', { link_location: loc, content_group: group }); return; }
+
+    var url;
+    try { url = new URL(a.href, location.href); } catch (e) { return; }
+    var file = url.pathname.split('/').pop();
+    var internal = url.host === location.host;
+
+    if (internal && cvFile && file === cvFile) {
+      send('cv_download', { file_name: file, link_location: loc, content_group: group });
+      return;
+    }
+    if (internal && /\.pdf$/i.test(url.pathname)) {
+      send('paper_download', { file_name: file, paper_title: paperTitle(), link_location: loc, content_group: group });
+      return;
+    }
+    if (internal) return;
+
+    for (var i = 0; i < profiles.length; i++) {
+      if (a.href.split('?')[0] === profiles[i].url.split('?')[0]) {
+        send('profile_click', { profile: profiles[i].name, link_location: loc, content_group: group });
+        return;
+      }
+    }
+    if (group === 'paper' && a.closest('.pub-links')) {
+      send('publication_link_click', { link_type: text(a), link_url: url.href, link_domain: url.host, paper_title: paperTitle() });
+    }
+    // All other outbound links are counted by GA4 Enhanced measurement ("click" with outbound = true).
+  }, true);
+
+  // Site search (pagefind modal): one event per settled query, not per keystroke.
+  document.addEventListener('DOMContentLoaded', function () {
+    var input = document.getElementById('search-input');
+    if (!input) return;
+    var timer = null, last = '';
+    input.addEventListener('input', function () {
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        var q = input.value.trim().toLowerCase();
+        if (q.length >= 3 && q !== last) { last = q; send('search', { search_term: q.slice(0, 100) }); }
+      }, 1500);
+    });
+  });
+})();
+</script>
+{{- end }}
