@@ -114,11 +114,10 @@
         {{- $m := partial "pub_meta.html" . }}
         <li class="pub-item" id="pub-{{ $m.slug }}" data-slug="{{ $m.slug }}" data-tab="{{ $m.tab }}" data-year="{{ $m.year }}" data-status="{{ $m.status }}" data-types='{{ .Params.publication_types | default slice | jsonify }}'>
           <article class="view-citation">
-            <span class="kind-label">[{{ $m.kind }}]</span>
-            <span class="pub-cite-authors">{{ partial "pub_authors.html" (dict "authors" (.Params.authors | default slice) "link" false) }}</span>.
-            <span class="pub-cite-year">{{ $m.yearLabel }}</span>.
             <a class="pub-cite-title" href="{{ .RelPermalink }}">{{ .Title }}</a>{{ if not (findRE "[?!.]$" .Title) }}.{{ end }}
-            {{- if and .Params.publication (ne $m.status "in_progress") }} <span class="pub-cite-venue">{{ .Params.publication | markdownify }}.</span>{{ end }}
+            <span class="pub-cite-authors">{{ partial "pub_authors.html" (dict "authors" (.Params.authors | default slice) "link" false) }}</span>.
+            {{- if and .Params.publication (ne $m.status "in_progress") }} <span class="pub-cite-venue">{{ .Params.publication | markdownify }}</span>{{ if not (strings.Contains .Params.publication $m.yearLabel) }}, <span class="pub-cite-year">{{ $m.yearLabel }}</span>{{ end }}.
+            {{- else }} <span class="pub-cite-year">{{ $m.yearLabel }}</span>.{{ end }}
             {{- with .Params.award }} <span class="badge badge-award">{{ . }}</span>{{ end }}
           </article>
         </li>

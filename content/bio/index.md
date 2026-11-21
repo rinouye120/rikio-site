@@ -28,7 +28,7 @@ I graduated summa cum laude with highest honors in political science from UC Ber
 - **Princeton University** <span class="cv-date">2020–2026</span><br>
   Ph.D., [Department of Politics](https://politics.princeton.edu/); M.A., 2022
 - **University of California, Berkeley** <span class="cv-date">2017</span><br>
-  B.A. in [Political Science](https://polisci.berkeley.edu/), minor in History. Highest Honors, Highest Distinction, Phi Beta Kappa (Junior Admit)
+  B.A. in [Political Science](https://polisci.berkeley.edu/), minor in History. Summa cum laude (Highest Distinction); Highest Departmental Honors in Political Science; Phi Beta Kappa (Junior Admit)
 
 </div>
 
