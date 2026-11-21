@@ -27,6 +27,10 @@
   translation: "About"
 
 # Writings list
+- id: group_published
+  translation: "Published and Forthcoming"
+- id: group_working
+  translation: "Under Review and Working Papers"
 - id: tab_all
   translation: "All"
 - id: tab_articles
