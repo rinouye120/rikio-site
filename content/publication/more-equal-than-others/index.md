@@ -1,7 +1,7 @@
 ---
 title: "More Equal than Others: Race and Religion Alter Support to Countries in Conflict"
 date: 2026-06-08
-weight: 5
+weight: 3
 authors: ["Rikio Inouye"]
 publication_types: ["report"]
 status: under_review

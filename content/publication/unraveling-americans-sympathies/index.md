@@ -1,7 +1,7 @@
 ---
 title: "Unraveling Americans' Selective Sympathies Toward Israelis and Palestinians"
 date: 2026-03-20
-weight: 3
+weight: 5
 authors: ["Rikio Inouye", "Yusaku Horiuchi"]
 publication_types: ["journal_article"]
 status: published

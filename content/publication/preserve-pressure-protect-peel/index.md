@@ -1,7 +1,7 @@
 ---
 title: "Preserve, Pressure, Protect, and Peel: The US–China Rivalry and the Politics of Vaccine Provision"
 date: 2026-01-09
-weight: 4
+weight: 6
 authors: ["Rikio Inouye"]
 publication_types: ["journal_article"]
 status: published

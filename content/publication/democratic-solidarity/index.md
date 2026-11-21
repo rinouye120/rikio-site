@@ -1,7 +1,7 @@
 ---
 title: "Democratic Solidarity: Selective Support for Democracies in War"
 date: 2025-06-01
-weight: 6
+weight: 4
 authors: ["Rikio Inouye", "Yusaku Horiuchi"]
 publication_types: ["report"]
 status: under_review

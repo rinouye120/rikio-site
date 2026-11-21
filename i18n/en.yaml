@@ -59,6 +59,8 @@
   translation: "Reset filters"
 - id: sort_label
   translation: "Sort"
+- id: sort_featured
+  translation: "Status and venue"
 - id: sort_newest
   translation: "Newest first"
 - id: sort_oldest

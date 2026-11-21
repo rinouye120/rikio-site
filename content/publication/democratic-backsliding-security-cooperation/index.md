@@ -1,7 +1,7 @@
 ---
 title: "Democratic Backsliding Damages Foreign Public Support for Security Cooperation"
 date: 2026-01-01
-weight: 2
+weight: 1
 authors: ["Rikio Inouye", "Yusaku Horiuchi", "Eun A Jo", "Kelly Matush"]
 publication_types: ["journal_article"]
 status: accepted

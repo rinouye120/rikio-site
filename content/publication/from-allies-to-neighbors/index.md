@@ -1,7 +1,7 @@
 ---
 title: "From Allies to Neighbors: The Impact of Military Service on Public Support for Migrant Resettlement"
 date: 2026-01-01
-weight: 1
+weight: 2
 authors: ["Rikio Inouye", "Christopher Blair"]
 publication_types: ["journal_article"]
 status: accepted
