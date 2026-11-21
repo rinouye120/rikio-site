@@ -1,12 +1,12 @@
 ---
 title: "Democratic Solidarity: Selective Support for Democracies in War"
-date: 2025-06-01
+date: 2026-11-18
 weight: 4
 authors: ["Rikio Inouye", "Yusaku Horiuchi"]
 publication_types: ["report"]
 status: under_review
-publication: "Revise and resubmit at the *American Journal of Political Science*"
-abstract: "How do democratic publics choose sides in foreign conflicts? We argue that they rely on identity heuristics, assess each side's relative in-groupness, and support the side they perceive as closer. Regime type is an especially salient cue, producing what we call democratic solidarity: citizens prefer to support fellow democracies over nondemocracies. Three side-selection conjoint experiments in the U.S. and the U.K. provide support for such solidarity even when costless neutrality is an option. Two additional vignette experiments suggest that democratic solidarity extends to substantive policy preferences. However, respondents evaluate in-groupness across multiple identity dimensions: democratic solidarity can be reinforced or attenuated by religious and, to a lesser extent, racial identities. Support for democracies disappears in conflicts between Christian nondemocracies and non-Christian democracies, and co-racial affinities polarize support. Overall, democratic solidarity is powerful but conditional, underscoring how identities can reinforce or cross-cut foreign policy preferences."
+publication: "Revised and resubmitted at the *American Journal of Political Science*"
+abstract: "How do democratic publics choose sides in foreign conflicts? We argue that identity heuristics shape their choices, with regime type serving as a central heuristic. Three conjoint experiments in the U.S. and U.K. show what we call \"democratic solidarity\": respondents more strongly support democracies than nondemocracies in war. Two additional vignette experiments extend this pattern to substantive policy preferences. However, solidarity is conditional. In several cross-cutting comparisons between Christian nondemocracies and non-Christian democracies, estimated support for democracy is not statistically distinguishable from equal support for democracies and nondemocracies. Exploratory subgroup analyses also show variation in support across respondents' identities and predispositions. These patterns are consistent with our theoretical account of relative in-groupness. Overall, democratic solidarity is a substantial but bounded pattern in foreign-policy preferences."
 links:
   - name: "Preprint (SSRN)"
     url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5226460"
