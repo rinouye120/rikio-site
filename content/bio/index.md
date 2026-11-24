@@ -81,14 +81,12 @@ I graduated summa cum laude with highest honors in political science from UC Ber
 <div class="cv-list">
 
 - APSA, MPSA, Peace Science Society
-- [Center for International Security Studies (CISS)](https://ciss.princeton.edu/people/rikio-inouye), Graduate Fellow
-- [Liechtenstein Institute on Self-Determination](https://lisd.princeton.edu/people/rikio-inouye), Research Assistant
 - [US-Japan Council](https://www.usjapancouncil.org/), Associate Leader
 - [Japan Exchange Teaching (JET) Programme Alumni Association](https://jetaausa.com/)
 
 </div>
 
-<!-- NOTE FOR RIKIO: The C.V. says "Lichtenstein Institute for Self-Determination"; the institute's own spelling is "Liechtenstein Institute on Self-Determination", which is used here. Also "Lee Kwan Yew" is corrected to "Lee Kuan Yew" above. -->
+<!-- NOTE FOR RIKIO: "Lee Kwan Yew" is corrected to "Lee Kuan Yew" above. -->
 
 ## Professional Experience
 
